@@ -2,6 +2,8 @@
 (function () {
 
     /* ---------------------------------- Variables Locales ---------------------------------- */
+    var homeTpl = Handlebars.compile($("#home-tpl").html()); // Guarda el template home
+    var employeeListTpl = Handlebars.compile($("#employee-list-tpl").html()); // Guarda el template empleados
     var service = new EmployeeService();
     service.initialize().done(function () {
         renderHomeView();
@@ -24,24 +26,14 @@
 
     /* ---------------------------------- Funciones Locales ---------------------------------- */
     function findByName() {
-        service.findByName($('.search-key').val()).done(function (employees) {
-            var l = employees.length;
-            var e;
-            $('.employee-list').empty();
-            for (var i = 0; i < l; i++) {
-                e = employees[i];
-                $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
-            }
-        });
+      service.findByName($('.search-key').val()).done(function (employees) {
+          $('.content').html(employeeListTpl(employees));
+      });
     }
 
     /* ----------------------------------------- Vistas ---------------------------------------- */
     function renderHomeView() { //renderiza la vista home
-    var html =
-      "<h1>Directorio</h1>" +
-      "<input class='search-key' type='search' placeholder='Escribe aqui'/>" +
-      "<ul class='employee-list'></ul>"; //codigo html a injectar en el DOM
-    $('body').html(html); //injectamos el codigo en el dom
+    $('body').html(homeTpl); //injectamos el codigo en el dom
     $('.search-key').on('keyup', findByName); //añadimos el listener al campo de busqueda
 }
 

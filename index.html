@@ -4,18 +4,47 @@
     <meta charset="utf-8"> <!-- Indicamos el encoding, sin el no funcionarian "ñ" ni acentos -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <!-- Indicamos el tamaño de nuestra aplicacion e indicamos que no se pueda hacer zoom -->
+
+    <!-- Aregamos los estilos CSS -->
+    <link href="assets/ratchet/css/ratchet.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
 </head>
 <body>
+  <script id="home-tpl" type="text/template">
+      <header class="bar bar-nav">
+          <h1 class="title">Directorio</h1>
+      </header>
+      <div class="bar bar-standard bar-header-secondary">
+          <input class='search-key' type="search"/>
+      </div>
+      <div class="content"></div>
+  </script>
 
+  <script id="employee-list-tpl" type="text/template">
+    <ul class="table-view">
+        {{#each this}}
+        <li class="table-view-cell media">
+          <a href="#employees/{{ id }}">
+              <img class="media-object pull-left" src="assets/pics/{{pic}}">
+              <div class="media-body">
+                  {{firstName}} {{lastName}}
+                  <p>{{title}}</p>
+              </div>
+          </a>
+        </li>
+        {{/each}}
+    </ul>
+</script>
 
 
 <!-- Cargamos los Scripts -->
-<script src="lib/jquery.js"></script>
-<script src="js/services/localstorage/EmployeeService.js"></script>
-<script src="js/app.js"></script>
 <script src="cordova.js"></script> <!-- Este es un comodin, cordova añadira el script necesario dependiendo de la plataforma
 en que este corriendo la aplicacion -->
+<script src="lib/jquery.js"></script>
+<script src="js/services/localstorage/EmployeeService.js"></script>
 <script src="lib/fastclick.js"></script> <!-- Nos permite eliminar el delay en algunos dispositivos -->
+<script src="lib/handlebars.js"></script> <!-- Nos permite trabajar con templates -->
+<script src="js/app.js"></script>
 
 </body>
 </html>
