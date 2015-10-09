@@ -1,12 +1,12 @@
 //Usamos una "Immediate Function" para iniciar la aplicacion sin dejar que nada este fuera del scope global
 (function () {
-
+    //Ya no son variables locales, son objetos de las vistas
+    HomeView.prototype.template = Handlebars.compile($("#home-tpl").html()); // Guarda el template home
+    EmployeeListView.prototype.template = Handlebars.compile($("#employee-list-tpl").html()); // Guarda el template empleados
     /* ---------------------------------- Variables Locales ---------------------------------- */
-    var homeTpl = Handlebars.compile($("#home-tpl").html()); // Guarda el template home
-    var employeeListTpl = Handlebars.compile($("#employee-list-tpl").html()); // Guarda el template empleados
     var service = new EmployeeService();
     service.initialize().done(function () {
-        renderHomeView();
+        $('body').html(new HomeView(service).render().$el);
     });
 
     /* --------------------------------- Registro de Eventos -------------------------------- */
@@ -25,16 +25,5 @@
     }, false);
 
     /* ---------------------------------- Funciones Locales ---------------------------------- */
-    function findByName() {
-      service.findByName($('.search-key').val()).done(function (employees) {
-          $('.content').html(employeeListTpl(employees));
-      });
-    }
-
-    /* ----------------------------------------- Vistas ---------------------------------------- */
-    function renderHomeView() { //renderiza la vista home
-    $('body').html(homeTpl); //injectamos el codigo en el dom
-    $('.search-key').on('keyup', findByName); //añadimos el listener al campo de busqueda
-}
 
 }());
