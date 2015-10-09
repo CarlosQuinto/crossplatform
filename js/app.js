@@ -14,10 +14,11 @@
     });
 
     document.addEventListener('deviceready', function () {
+      FastClick.attach(document.body); //registramos el script para implementarse cuando el dispositivo este listo
       if (navigator.notification) { // remplaza la notificacion nativa de html con la nativa del dispositivo
           window.alert = function (message) {
               navigator.notification.alert(
-                  message,    // mensage
+                  message,    // mensaje
                   null,       // callback (esto es magia pura, pero es mas avanzado ;)
                   "Taller", // Titulo
                   'OK'        // Nombre del boton
