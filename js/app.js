@@ -13,6 +13,19 @@
         alert("App de contactos 1.0");
     });
 
+    document.addEventListener('deviceready', function () {
+      if (navigator.notification) { // remplaza la notificacion nativa de html con la nativa del dispositivo
+          window.alert = function (message) {
+              navigator.notification.alert(
+                  message,    // mensage
+                  null,       // callback (esto es magia pura, pero es mas avanzado ;)
+                  "Taller", // Titulo
+                  'OK'        // Nombre del boton
+              );
+          };
+      }
+    }, false);
+
     /* ---------------------------------- Funciones Locales ---------------------------------- */
     function findByName() {
         service.findByName($('.search-key').val()).done(function (employees) {
