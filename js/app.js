@@ -1,19 +1,19 @@
-// We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
+//Usamos una "Immediate Function" para iniciar la aplicacion sin dejar que nada este fuera del scope global
 (function () {
 
-    /* ---------------------------------- Local Variables ---------------------------------- */
+    /* ---------------------------------- Variables Locales ---------------------------------- */
     var service = new EmployeeService();
     service.initialize().done(function () {
-        console.log("Service initialized");
+        console.log("Servicio Iniciado");
     });
 
-    /* --------------------------------- Event Registration -------------------------------- */
+    /* --------------------------------- Registro de Eventos -------------------------------- */
     $('.search-key').on('keyup', findByName);
     $('.help-btn').on('click', function() {
         alert("App de contactos 1.0");
     });
 
-    /* ---------------------------------- Local Functions ---------------------------------- */
+    /* ---------------------------------- Funciones Locales ---------------------------------- */
     function findByName() {
         service.findByName($('.search-key').val()).done(function (employees) {
             var l = employees.length;

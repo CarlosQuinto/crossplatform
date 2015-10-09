@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"> <!-- Indicamos el encoding, sin el no funcionarian "ñ" ni acentos -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <!-- Indicamos el tamaño de nuestra aplicacion e indicamos que no se pueda hacer zoom -->
 </head>
 <body>
 
-<p><button class="help-btn">Alerta!</button></p>
-<div class='header'><h1>Contactos</h1></div>
+<p><button class="help-btn">Alerta!</button></p> <!-- boton para llamar el alert -->
+<div class='header'><h1>Contactos</h1></div> <!-- titulo de la aplicacion -->
 <div class='search-view'>
-    <input class='search-key' type="search" placeholder="Escribe aqui"/>
-    <ul class='list employee-list'></ul>
+    <input class='search-key' type="search" placeholder="Escribe aqui"/> <!-- caja de busqueda -->
+    <ul class='list employee-list'></ul> <!-- lista desordenada que rellenaremos con los contactos -->
 </div>
 
+<!-- Cargamos los Scripts -->
 <script src="lib/jquery.js"></script>
 <script src="js/services/json/EmployeeService.js"></script>
 <script src="js/app.js"></script>
