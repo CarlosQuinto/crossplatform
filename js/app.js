@@ -4,15 +4,10 @@
     /* ---------------------------------- Variables Locales ---------------------------------- */
     var service = new EmployeeService();
     service.initialize().done(function () {
-        console.log("Servicio Iniciado");
+        renderHomeView();
     });
 
     /* --------------------------------- Registro de Eventos -------------------------------- */
-    $('.search-key').on('keyup', findByName);
-    $('.help-btn').on('click', function() {
-        alert("App de contactos 1.0");
-    });
-
     document.addEventListener('deviceready', function () {
       FastClick.attach(document.body); //registramos el script para implementarse cuando el dispositivo este listo
       if (navigator.notification) { // remplaza la notificacion nativa de html con la nativa del dispositivo
@@ -39,5 +34,15 @@
             }
         });
     }
+
+    /* ----------------------------------------- Vistas ---------------------------------------- */
+    function renderHomeView() { //renderiza la vista home
+    var html =
+      "<h1>Directorio</h1>" +
+      "<input class='search-key' type='search' placeholder='Escribe aqui'/>" +
+      "<ul class='employee-list'></ul>"; //codigo html a injectar en el DOM
+    $('body').html(html); //injectamos el codigo en el dom
+    $('.search-key').on('keyup', findByName); //añadimos el listener al campo de busqueda
+}
 
 }());
