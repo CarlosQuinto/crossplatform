@@ -4,7 +4,8 @@ var HomeView = function (service){ //service representa los datos de los empelea
   this.initialize = function () {
     // Define el div de la vista
     this.$el = $('<div/>');
-    this.$el.on('keyup', '.search-key', this.findByName);
+    this.$el.on('click', '.search-key', this.findByName); //carga la lista de empleados al selecionar la caja de busqueda
+    this.$el.on('keyup', '.search-key', this.findByName); //recarga la lista de empleados al escribir
     employeeListView = new EmployeeListView();
     this.render();
   };
@@ -20,6 +21,6 @@ var HomeView = function (service){ //service representa los datos de los empelea
         employeeListView.setEmployees(employees);
     });
   };
-  
+
   this.initialize();
 }
