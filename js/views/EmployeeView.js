@@ -3,7 +3,8 @@ var EmployeeView = function(employee) {
   this.initialize = function() {
       this.$el = $('<div/>');
       this.$el.on('click', '.add-location-btn', this.addLocation); //registramos el listener de geolocalizacion
-      this.$el.on('click', '.add-contact-btn', this.addToContacts); //registramos el listebes de añadir contacto
+      this.$el.on('click', '.add-contact-btn', this.addToContacts); //registramos el listener de añadir contacto
+      this.$el.on('click', '.change-pic-btn', this.changePicture); //registramos el listener de cambiar foto
   };
 
   this.render = function() {
@@ -38,6 +39,30 @@ var EmployeeView = function(employee) {
     contact.phoneNumbers = phoneNumbers; //añadimos los numeros
     contact.save(); //guardamos el contacto
     return false;
+};
+
+this.changePicture = function(event) {
+  event.preventDefault();
+  if (!navigator.camera) { //comprobamos que existe la funcion de camara
+      alert("Funcion de camara no soportada", "Error");
+      return;
+  }
+  var options =   {   quality: 50, //calidad de la imagen
+                      destinationType: Camera.DestinationType.DATA_URL, //destino temporal
+                      sourceType: 1,      // 0:Galeria, 1=Camara, 2=Imagenes Guardadas
+                      encodingType: 0     // 0=JPG 1=PNG
+                  };
+
+  navigator.camera.getPicture( //llamamos a la camara
+      function(imgData) {
+          $('.media-object', this.$el).attr('src', "data:image/jpeg;base64,"+imgData); //ponemos la foto en el contacto
+      },
+      function() {
+          alert('Error al tomar la foto', 'Error');
+      },
+      options);
+
+  return false;
 };
 
   this.initialize();
