@@ -6,17 +6,18 @@
     EmployeeView.prototype.template = Handlebars.compile($("#employee-tpl").html());
     /* ---------------------------------- Variables Locales ---------------------------------- */
     var service = new EmployeeService();
+    var slider = new PageSlider($('body'));
     service.initialize().done(function () {
-        $('body').html(new HomeView(service).render().$el);
+        slider.slidePage(new HomeView(service).render().$el);
 
         router.addRoute('employees/:id', function(id) { //creamos una nueva ruta que acepta un argumento (el id del empleado)
             service.findById(parseInt(id)).done(function(employee) { //convertimos el argumento a un entero
-                $('body').html(new EmployeeView(employee).render().$el); //renderisamos la vista rellenando los datos con el empleado
+                slider.slidePage(new EmployeeView(employee).render().$el);; //renderisamos la vista rellenando los datos con el empleado
             });
         });
 
         router.addRoute('home', function() { //creamos una nueva ruta para home
-                $('body').html(new HomeView(service).render().$el);
+                slider.slidePage(new HomeView(service).render().$el);
         });
 
         router.start();

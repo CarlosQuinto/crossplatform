@@ -8,7 +8,7 @@
     <!-- Aregamos los estilos CSS -->
     <link href="assets/ratchet/css/ratchet.css" rel="stylesheet">
     <link href="assets/css/styles.css" rel="stylesheet">
-    
+    <link href="assets/css/pageslider.css" rel="stylesheet">
 </head>
 <body>
 
@@ -43,7 +43,7 @@
 <!--- Template de la vista empleado -->
 <script id="employee-tpl" type="text/template">
       <header class="bar bar-nav">
-          <a class="btn btn-link btn-nav pull-left" href="#home">
+          <a class="btn btn-link btn-nav pull-left" id="back" href="#home">
               <span class="icon icon-left-nav"></span>
           </a>
           <h1 class="title">Empleados</h1>
@@ -106,6 +106,7 @@
 en que este corriendo la aplicacion -->
 <script src="lib/jquery.js"></script>
 <script src="lib/router.js"></script> <!-- Nos permite crear rutas para nuestras vistas -->
+<script src="lib/pageslider.js"></script> <!-- Nos permite añadir transiciones entre vistas -->
 <script src="js/services/localstorage/EmployeeService.js"></script>
 <script src="lib/fastclick.js"></script> <!-- Nos permite eliminar el delay en algunos dispositivos -->
 <script src="lib/handlebars.js"></script> <!-- Nos permite trabajar con templates -->
